@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/Ionicons";
-
+import ProductDetail from "./screens/productDetail";
 import DetailsScreen from "./screens/details";
 import Home from "./screens/Tabs/Home";
 import Favorite from "./screens/Tabs/favorite";
@@ -29,6 +29,11 @@ export default function App() {
           component={MyTabs}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="ProuctDetail"
+          component={ProductDetail}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -50,7 +55,7 @@ function MyTabs() {
           headerShown: false,
           headerTitle: "Home Sreen",
           tabBarIcon: ({ color, size }) => (
-            <Icon name="rocket" size={size} color={color} />
+            <Icon name="home" size={size} color={color} />
           ),
         }}
       />

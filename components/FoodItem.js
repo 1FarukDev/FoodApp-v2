@@ -1,12 +1,18 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 const FoodItem = ({ item }) => {
+  const navigation = useNavigation();
+  const handlePress = () => {
+    console.log("pressed");
+    navigation.navigate("ProuctDetail");
+  };
   return (
-    <View style={styles.foodList}>
+    <Pressable style={styles.foodList} onPress={() => handlePress(item)}>
       <Image source={item.image} style={styles.foodImage} />
       <Text style={styles.foodName}>{item.name}</Text>
       <Text style={styles.foodPrice}>{item.price}</Text>
-    </View>
+    </Pressable>
   );
 };
 

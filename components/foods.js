@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 // import FoodItem from "./foodItem";
 import FoodItem from "./FoodItem";
@@ -9,7 +16,9 @@ import food4 from "../assets/images/plantain.jpg";
 import food5 from "../assets/images/rice.jpg";
 import food6 from "../assets/images/Vegetable.jpg";
 import food7 from "../assets/images/spag.jpg";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
+
+// import { Router } from "@react-navigation/native";
 const foods = () => {
   const food = [
     {
@@ -56,10 +65,15 @@ const foods = () => {
     },
   ];
   return (
-    <View style={styles.foodList}>
+    <View style={styles.foodLst}>
       <FlatList
         data={food}
-        renderItem={({ item }) => <FoodItem item={item} />}
+        // style={styles.foodList}
+        renderItem={({ item }) => (
+          // <TouchableOpacity onPress={() => handlePress()}>
+          <FoodItem item={item} />
+          // </TouchableOpacity>
+        )}
         horizontal={true}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
@@ -74,7 +88,7 @@ const styles = StyleSheet.create({
   foodList: {
     flexDirection: "row",
     alignItems: "center",
-    // borderWidth: 2,
-    // backgroundColor: "black",
+    borderWidth: 2,
+    backgroundColor: "black",
   },
 });
