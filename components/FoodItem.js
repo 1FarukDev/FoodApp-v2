@@ -4,8 +4,8 @@ import { useNavigation } from "@react-navigation/native";
 const FoodItem = ({ item }) => {
   const navigation = useNavigation();
   const handlePress = () => {
-    console.log("pressed");
-    navigation.navigate("ProuctDetail");
+    // console.log("pressed");
+    navigation.navigate("ProuctDetail", {item});
   };
   return (
     <Pressable style={styles.foodList} onPress={() => handlePress(item)}>
