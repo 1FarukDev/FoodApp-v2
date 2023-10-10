@@ -50,10 +50,10 @@ const Home = () => {
       {/* Icon */}
       <View style={styles.icon}>
         <TouchableWithoutFeedback onPress={handlePress}>
-          <Image source={require("../../assets/images/hamburger.png")} />
+          <Image source={require("../../assets/icon/hamburger.png")} />
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback>
-          <Image source={require("../../assets/images/shopping-cart.png")} />
+          <Image source={require("../../assets/icon/shopping-cart.png")} />
         </TouchableWithoutFeedback>
       </View>
 
@@ -67,7 +67,7 @@ const Home = () => {
 
       <View style={styles.inputContainer}>
         <View>
-          <Image source={require("../../assets/images/search.png")} />
+          <Image source={require("../../assets/icon/search.png")} />
         </View>
         <TextInput style={styles.input} placeholder="Search" />
       </View>
