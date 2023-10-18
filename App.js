@@ -12,6 +12,7 @@ import Favorite from "./screens/Tabs/favorite";
 import HomeScreen from "./screens/home";
 import Profile from "./screens/Tabs/profile";
 import Order from "./screens/Tabs/order";
+import Register from "./screens/register";
 const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +33,11 @@ export default function App() {
         <Stack.Screen
           name="ProuctDetail"
           component={ProductDetail}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
@@ -71,18 +77,7 @@ function MyTabs() {
           ),
         }}
       />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarLabel: "",
-          headerShown: false,
-          headerTitle: "Settings",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="user" size={size} color={color} />
-          ),
-        }}
-      />
+
       <Tab.Screen
         name="Order"
         component={Order}
@@ -92,6 +87,18 @@ function MyTabs() {
           headerTitle: "Settings",
           tabBarIcon: ({ color, size }) => (
             <Icons name="ios-timer-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: "",
+          headerShown: false,
+          headerTitle: "Settings",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="user" size={size} color={color} />
           ),
         }}
       />

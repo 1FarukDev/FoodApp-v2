@@ -10,10 +10,11 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { supabase } from "../lib/supabase";
-import { useRouter } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
-  const router = useRouter();
+  const navigation = useNavigation();
+
   const [signIn, setSignIn] = useState({
     email: "",
     password: "",
@@ -37,7 +38,7 @@ const Login = () => {
       // setLoading(false)
     } else {
       console.log("User signed up:", signIn.email);
-      router.replace("home");
+      navigation.navigate("Details");
       // You can navigate to another screen or perform other actions upon successful sign-up
     }
   }
