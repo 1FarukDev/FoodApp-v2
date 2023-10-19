@@ -16,12 +16,18 @@ import food6 from "../assets/images/Vegetable.jpg";
 import food7 from "../assets/images/spag.jpg";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import Click from "../components/button";
 
 //  Function handling the params
 const ProductDetail = ({ name }) => {
   const navigation = useNavigation();
   const handleBack = () => {
     navigation.goBack();
+  };
+
+  // Function to hadnle cart
+  const handleAddToCart = () => {
+    console.log("Hello World");
   };
 
   // Destructuring the route
@@ -35,6 +41,7 @@ const ProductDetail = ({ name }) => {
           marginTop: Platform.OS === "android" ? 30 : 0,
           paddingLeft: 30,
           paddingRight: 30,
+          flex: 1,
         },
         styles.container,
       ]}
@@ -66,6 +73,11 @@ const ProductDetail = ({ name }) => {
         <Text style={[{ marginTop: 20 }, styles.infoText]}>Return Policy:</Text>
         <Text style={[styles.productDeliveryInfo]}>{item.returnPolicy}</Text>
       </View>
+
+      {/* Button */}
+      <Pressable style={styles.button} onPress={handleAddToCart}>
+        <Text style={styles.buttonText}>Add To Cart</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
@@ -80,8 +92,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     alignItems: "center",
-    alignContent: "center",
-    justifyContent: "center",
+    flex: 0.5,
   },
   image: {
     borderWidth: 2,
@@ -114,5 +125,22 @@ const styles = StyleSheet.create({
   infoText: {
     fontWeight: "500",
     fontSize: 20,
+  },
+  button: {
+    flex: 0.5,
+    position: "relative",
+  },
+  buttonText: {
+    position: "absolute",
+    bottom: 40,
+    justifyContent: "center",
+    left: "15%",
+    backgroundColor: "#FA4A0C",
+    paddingVertical: 20,
+    paddingHorizontal: 100,
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#F6F6F9",
+    borderRadius: 100,
   },
 });
