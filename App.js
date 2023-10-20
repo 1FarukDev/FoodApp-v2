@@ -96,7 +96,7 @@ function MyTabs() {
         options={{
           tabBarLabel: "",
           headerShown: false,
-          headerTitle: "Settings",
+          headerTitle: "Profile",
           tabBarIcon: ({ color, size }) => (
             <Icon name="user" size={size} color={color} />
           ),
