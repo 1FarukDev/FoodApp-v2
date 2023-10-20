@@ -9,7 +9,7 @@ import {
 
 function HomeScreen({ navigation }) {
   const handleImagePress = () => {
-    navigation.navigate("Register");
+    navigation.navigate("Details");
   };
   return (
     <View style={styles.container}>
