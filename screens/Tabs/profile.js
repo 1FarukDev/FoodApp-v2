@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
-import React from "react";
-
+import React, { useState } from "react";
+import { RadioButton } from "react-native-paper";
 const Profile = () => {
+  const [selectedValue, setSelectedValue] = useState("option1");
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -39,7 +40,62 @@ const Profile = () => {
             Payment Option
           </Text>
           <View style={[styles.paymentCard]}>
-            
+            <View>
+              <RadioButton.Group
+                onValueChange={(value) => setSelectedValue(value)}
+                value={selectedValue}
+              >
+                {/* Credit card */}
+                <View style={styles.paymentContainer}>
+                  <RadioButton.Android value="option1" color="#FA4A0C" />
+                  <View style={styles.paymentTypeContainer}>
+                    <View style={styles.paymentImageType}>
+                      <Image
+                        source={require("../../assets/images/credit-card.png")}
+                      />
+                    </View>
+                    <Text style={styles.paymentTypeText}>Card</Text>
+                  </View>
+                </View>
+
+                {/* Bank Transfer */}
+                <View style={styles.paymentContainer}>
+                  <RadioButton.Android value="option2" color="#FA4A0C" />
+                  <View style={styles.paymentTypeContainer}>
+                    <View
+                      style={[
+                        styles.paymentImageType,
+                        { backgroundColor: "rgba(235, 71, 150, 1)" },
+                      ]}
+                    >
+                      <Image source={require("../../assets/images/bank.png")} />
+                    </View>
+                    <Text style={styles.paymentTypeText}>Bank Account</Text>
+                  </View>
+                </View>
+
+                {/* Paypal */}
+                <View style={[styles.paymentContainer, { marginBottom: 20 }]}>
+                  <RadioButton.Android value="option3" color="#FA4A0C" />
+                  <View style={styles.paymentTypeContainer}>
+                    <View
+                      style={[
+                        styles.paymentImageType,
+                        {
+                          backgroundColor: "#0038FF",
+                        },
+                      ]}
+                    >
+                      <Image
+                        source={require("../../assets/images/paypal.png")}
+                      />
+                    </View>
+                    <Text style={styles.paymentTypeText}>Paypal</Text>
+                  </View>
+                </View>
+              </RadioButton.Group>
+              {/* <Text>Selected value: {selectedValue}</Text> */}
+            </View>
           </View>
         </View>
       </View>
@@ -75,7 +131,30 @@ const styles = StyleSheet.create({
     flex: 1, // Allow text to wrap
     marginLeft: 20, // Adjust spacing between image and text
   },
+  paymentContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
+  },
   paymentOption: {
     marginTop: 29,
+  },
+  paymentCard: {
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  paymentTypeContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  paymentImageType: {
+    backgroundColor: "rgba(244, 123, 10, 1)",
+    padding: 10,
+    borderRadius: 10,
+  },
+  paymentTypeText: {
+    marginLeft: 10,
   },
 });
