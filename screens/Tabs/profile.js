@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  Pressable,
+} from "react-native";
 import React, { useState } from "react";
 import { RadioButton } from "react-native-paper";
 const Profile = () => {
@@ -99,6 +106,11 @@ const Profile = () => {
           </View>
         </View>
       </View>
+
+      {/* Button */}
+      <Pressable style={styles.button}>
+        <Text style={styles.buttonText}>Update</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
@@ -156,5 +168,23 @@ const styles = StyleSheet.create({
   },
   paymentTypeText: {
     marginLeft: 10,
+  },
+  button: {
+    flex: 0.5,
+    position: "relative",
+    marginTop: 200,
+  },
+  buttonText: {
+    position: "absolute",
+    bottom: 40,
+    justifyContent: "center",
+    left: "15%",
+    backgroundColor: "#FA4A0C",
+    paddingVertical: 20,
+    paddingHorizontal: 100,
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#F6F6F9",
+    borderRadius: 100,
   },
 });
