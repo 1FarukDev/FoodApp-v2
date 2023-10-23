@@ -14,9 +14,10 @@ import Foods from "../../components/foods";
 import Drinks from "../../components/drinks";
 import Sauce from "../../components/sauce";
 import Snacks from "../../components/snacks";
-import { useNavigation } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
 const Home = () => {
   const [activeComponent, setActiveComponent] = useState(1);
+  const navigation = useNavigation();
   const switchComponent = (componentNumber) => {
     setActiveComponent(componentNumber);
   };
@@ -26,6 +27,7 @@ const Home = () => {
   };
 
   const handleCartPage = () => {
+    navigation.navigate("Cart");
     console.log("Hello World");
   };
   // const [products, setProducts] = useState("");
