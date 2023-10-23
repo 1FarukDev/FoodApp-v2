@@ -14,7 +14,7 @@ import Foods from "../../components/foods";
 import Drinks from "../../components/drinks";
 import Sauce from "../../components/sauce";
 import Snacks from "../../components/snacks";
-
+import { useNavigation } from "expo-router";
 const Home = () => {
   const [activeComponent, setActiveComponent] = useState(1);
   const switchComponent = (componentNumber) => {
@@ -22,6 +22,10 @@ const Home = () => {
   };
 
   const handlePress = () => {
+    console.log("Hello World");
+  };
+
+  const handleCartPage = () => {
     console.log("Hello World");
   };
   // const [products, setProducts] = useState("");
@@ -52,7 +56,7 @@ const Home = () => {
         <TouchableWithoutFeedback onPress={handlePress}>
           <Image source={require("../../assets/icon/hamburger.png")} />
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={handleCartPage}>
           <Image source={require("../../assets/icon/shopping-cart.png")} />
         </TouchableWithoutFeedback>
       </View>

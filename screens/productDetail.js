@@ -16,18 +16,23 @@ import food6 from "../assets/images/Vegetable.jpg";
 import food7 from "../assets/images/spag.jpg";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
-import Click from "../components/button";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../cart/cartReducer";
+// import Click from "../components/button";
 
 //  Function handling the params
 const ProductDetail = ({ name }) => {
+  const cart = useSelector((state) => state.cart.cart);
+  console.log(cart);
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const handleBack = () => {
     navigation.goBack();
   };
 
   // Function to hadnle cart
-  const handleAddToCart = () => {
-    console.log("Hello World");
+  const addItemToCart = (item) => {
+    dispatch(addToCart(item));
   };
 
   // Destructuring the route
@@ -75,9 +80,15 @@ const ProductDetail = ({ name }) => {
       </View>
 
       {/* Button */}
-      <Pressable style={styles.button} onPress={handleAddToCart}>
-        <Text style={styles.buttonText}>Add To Cart</Text>
-      </Pressable>
+      {cart.some((value) => value.id == item.id) ? (
+        <Pressable style={styles.button} onPress={() => addItemToCart(item)}>
+          <Text style={styles.buttonText}>Remove From Cart</Text>
+        </Pressable>
+      ) : (
+        <Pressable style={styles.button} onPress={() => addItemToCart(item)}>
+          <Text style={styles.buttonText}>Add To Cart</Text>
+        </Pressable>
+      )}
     </SafeAreaView>
   );
 };

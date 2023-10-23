@@ -22,71 +22,83 @@ import { Link, useRouter } from "expo-router";
 const foods = () => {
   const food = [
     {
-      key: 0,
+      id: 0,
       name: "Veggie Tomato Mix",
       price: "N1,200",
       image: food1,
-      deliveryInfo: 'Delivered between monday aug and thursday 20 from 8pm to 91:32 pm',
-      returnPolicy: 'All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.'
+      deliveryInfo:
+        "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
+      returnPolicy:
+        "All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.",
     },
     {
-      key: 1,
+      id: 1,
       name: "Egg and cucumber",
       price: "N1,200",
       image: food2,
-      deliveryInfo: 'Delivered between monday aug and thursday 20 from 8pm to 91:32 pm',
-      returnPolicy: 'All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.'
+      deliveryInfo:
+        "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
+      returnPolicy:
+        "All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.",
     },
     {
-      key: 2,
+      id: 2,
       name: "Moi-moi and ekpa",
       price: "N1,200",
       image: food3,
-      deliveryInfo: 'Delivered between monday aug and thursday 20 from 8pm to 91:32 pm',
-      returnPolicy: 'All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.'
+      deliveryInfo:
+        "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
+      returnPolicy:
+        "All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.",
     },
     {
-      key: 3,
+      id: 3,
       name: "Moi-moi and ekpa",
       price: "N1,200",
       image: food4,
-      deliveryInfo: 'Delivered between monday aug and thursday 20 from 8pm to 91:32 pm',
-      returnPolicy: 'All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.'
+      deliveryInfo:
+        "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
+      returnPolicy:
+        "All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.",
     },
     {
-      key: 4,
+      id: 4,
       name: "Moi-moi and ekpa",
       price: "N1,200",
       image: food5,
-      deliveryInfo: 'Delivered between monday aug and thursday 20 from 8pm to 91:32 pm',
-      returnPolicy: 'All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.'
+      deliveryInfo:
+        "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
+      returnPolicy:
+        "All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.",
     },
     {
-      key: 5,
+      id: 5,
       name: "Moi-moi and ekpa",
       price: "N1,200",
       image: food6,
-      deliveryInfo: 'Delivered between monday aug and thursday 20 from 8pm to 91:32 pm',
-      returnPolicy: 'All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.'
+      deliveryInfo:
+        "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
+      returnPolicy:
+        "All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.",
     },
     {
-      key: 6,
+      id: 6,
       name: "Moi-moi and ekpa",
       price: "N1,200",
       image: food7,
-      deliveryInfo: 'Delivered between monday aug and thursday 20 from 8pm to 91:32 pm',
-      returnPolicy: 'All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.'
+      deliveryInfo:
+        "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
+      returnPolicy:
+        "All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately.",
     },
   ];
   return (
     <View style={styles.foodLst}>
       <FlatList
         data={food}
-        // style={styles.foodList}
+        keyExtractor={(item, index) => item.id.toString()}
         renderItem={({ item }) => (
-          // <TouchableOpacity onPress={() => handlePress()}>
           <FoodItem item={item} />
-          // </TouchableOpacity>
         )}
         horizontal={true}
         showsVerticalScrollIndicator={false}
