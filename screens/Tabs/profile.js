@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 0.5,
     position: "relative",
-    marginTop: 200,
+    marginTop: 250,
   },
   buttonText: {
     position: "absolute",

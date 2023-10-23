@@ -13,35 +13,45 @@ import HomeScreen from "./screens/home";
 import Profile from "./screens/Tabs/profile";
 import Order from "./screens/Tabs/order";
 import Register from "./screens/register";
+import { Provider } from "react-redux";
+import store from "./cart/store";
+import CartPage from "./screens/cartPage";
 const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Details"
-          component={MyTabs}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProuctDetail"
-          component={ProductDetail}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Register"
-          component={Register}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Details"
+            component={MyTabs}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProuctDetail"
+            component={ProductDetail}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={Register}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Cart"
+            component={CartPage}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 function MyTabs() {
