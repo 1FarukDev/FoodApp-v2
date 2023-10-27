@@ -35,7 +35,7 @@ const foods = () => {
       id: 0,
       name: "Veggie Tomato Mix",
       price: "N1,200",
-      image:   foodImage3,
+      image:   foodImage1,
       deliveryInfo:
         "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
       returnPolicy:
@@ -45,7 +45,7 @@ const foods = () => {
       id: 1,
       name: "Egg and cucumber",
       price: "N1,200",
-      image:   foodImage3,
+      image:   foodImage2,
       deliveryInfo:
         "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
       returnPolicy:
@@ -65,7 +65,7 @@ const foods = () => {
       id: 3,
       name: "Moi-moi and ekpa",
       price: "N1,200",
-      image:   foodImage3,
+      image:   foodImage4,
       deliveryInfo:
         "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
       returnPolicy:
@@ -75,7 +75,7 @@ const foods = () => {
       id: 4,
       name: "Moi-moi and ekpa",
       price: "N1,200",
-      image:   foodImage3,
+      image:   foodImage5,
       deliveryInfo:
         "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
       returnPolicy:
@@ -85,7 +85,7 @@ const foods = () => {
       id: 5,
       name: "Moi-moi and ekpa",
       price: "N1,200",
-      image:   foodImage3,
+      image:   foodImage6,
       deliveryInfo:
         "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
       returnPolicy:
@@ -95,7 +95,7 @@ const foods = () => {
       id: 6,
       name: "Moi-moi and ekpa",
       price: "N1,200",
-      image:   foodImage3,
+      image:   foodImage7,
       deliveryInfo:
         "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",
       returnPolicy:
