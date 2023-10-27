@@ -3,6 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import EmptyCart from "../components/emptyCart";
+import CartItem from "../components/cartItem";
 
 const CartPage = () => {
   const navigation = useNavigation();
@@ -33,7 +34,7 @@ const CartPage = () => {
 
       {/* Cart Page entry */}
 
-      {cart.length === 0 ? <EmptyCart /> : <Text>Cart is full</Text>}
+      {cart.length === 0 ? <EmptyCart /> : <CartItem />}
     </View>
   );
 };
