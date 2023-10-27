@@ -7,13 +7,6 @@ import {
   Pressable,
 } from "react-native";
 import React from "react";
-import food1 from "../assets/images/food1.png";
-import food2 from "../assets/images/food2.png";
-import food3 from "../assets/images/food3.png";
-import food4 from "../assets/images/plantain.jpg";
-import food5 from "../assets/images/rice.jpg";
-import food6 from "../assets/images/Vegetable.jpg";
-import food7 from "../assets/images/spag.jpg";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,7 +31,7 @@ const ProductDetail = ({ name }) => {
   // Destructuring the route
   const route = useRoute();
   const { item } = route.params;
-
+  console.log(item);
   return (
     <SafeAreaView
       style={[
@@ -115,7 +108,6 @@ const styles = StyleSheet.create({
   productDetail: {
     marginTop: 10,
     flex: 0.5,
-
   },
   productName: {
     textAlign: "center",
@@ -138,7 +130,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: "90%",
     flex: 1,
-  
   },
   infoText: {
     fontWeight: "500",

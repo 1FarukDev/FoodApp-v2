@@ -3,6 +3,8 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 const EmptyCart = () => {
   const navigation = useNavigation();
+
+  //   Take user back to oder screen
   const handleStartOrdering = () => {
     navigation.navigate("Details");
   };
