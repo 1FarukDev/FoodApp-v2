@@ -1,10 +1,28 @@
-import { StyleSheet, Text, View, FlatList, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Image,
+  Pressable,
+} from "react-native";
 import React from "react";
 import FoodItem from "./FoodItem";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { decrementQuantity, incrementQuantity } from "../cart/cartReducer";
 
 const CartItem = () => {
   const cart = useSelector((state) => state.cart.cart);
+  const dispatch = useDispatch();
+
+  // Function to increase quantity
+  const inCreaseQuantity = (item) => {
+    dispatch(incrementQuantity(item));
+  };
+  // Function to decrease item
+  const decreaseQuantity = (item) => {
+    dispatch(decrementQuantity(item));
+  };
   console.log(cart);
   return (
     <View style={styles.Container}>
@@ -16,9 +34,17 @@ const CartItem = () => {
             </View>
             <View style={styles.cartInfo}>
               <Text>{item.name}</Text>
-              <View>
+              <View style={styles.infoText}>
                 <Text style={styles.cartPrice}>{item.price}</Text>
-                <Text style={styles.cartPrice}>{item.price}</Text>
+                <View style={styles.counter}>
+                  <Pressable onPress={() => decreaseQuantity(item)}>
+                    <Text style={styles.cartDetailCount}>-</Text>
+                  </Pressable>
+                  <Text style={styles.cartDetailCount}>{item.quantity}</Text>
+                  <Pressable onPress={() => inCreaseQuantity(item)}>
+                    <Text style={styles.cartDetailCount}>+</Text>
+                  </Pressable>
+                </View>
               </View>
             </View>
           </View>
@@ -53,9 +79,32 @@ const styles = StyleSheet.create({
   },
   cartInfo: {
     marginLeft: 15,
+    width: 150,
   },
   cartPrice: {
     color: "red",
+
+    flex: 1,
+  },
+  infoText: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
     marginTop: 10,
+  },
+  counter: {
+    flexDirection: "row",
+    backgroundColor: "red",
+    borderRadius: 40,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    alignContent: "center",
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  cartDetailCount: {
+    color: "white",
   },
 });
