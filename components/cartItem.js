@@ -35,28 +35,70 @@ const CartItem = () => {
       {cart.map((item) => {
         return (
           <Swipeable
-            renderLeftActions={(progress, dragX) => {
-              return (
-                <RectButton
-                  style={styles.leftAction}
-                  onPress={() => Alert.alert("Hi")}
-                >
-                  <Animated.Text style={styles.actionText}>
-                    Archive
-                  </Animated.Text>
-                </RectButton>
-              );
-            }}
+            // renderLeftActions={(progress, dragX) => {
+            //   return (
+            //     <RectButton style={{ borderWidth: 2 }}>
+            //       <Animated.Text style={styles.actionText}>
+            //         Archive
+            //       </Animated.Text>
+            //       <Animated.Text style={styles.actionText}>
+            //         Archive
+            //       </Animated.Text>
+            //     </RectButton>
+            //   );
+            // }}
             renderRightActions={(progress, dragX) => {
               return (
-                <RectButton
-                  style={styles.rightAction}
-                  onPress={() => Alert.alert("Hello")}
-                >
-                  <Animated.Text style={styles.actionText}>
-                    Delete
-                  </Animated.Text>
-                </RectButton>
+                <>
+                  <RectButton
+                    underlayColor="white" // Set the underlayColor to transparent
+                    activeOpacity={1} // Se
+                  >
+                    <View style={styles.rightAction}>
+                      <Animated.Text
+                        style={[
+                          styles.actionText,
+                          {
+                            marginRight: 15,
+                            alignContent: "center",
+                          },
+                        ]}
+                      >
+                        <Image
+                          source={require("../assets/icon/delete.png")}
+                          style={{ borderWidth: 2 }}
+                        />
+                      </Animated.Text>
+                      <Animated.Text style={styles.actionText}>
+                        <Image source={require("../assets/icon/heart2.png")} />
+                      </Animated.Text>
+                    </View>
+                  </RectButton>
+                  <RectButton
+                    underlayColor="white" // Set the underlayColor to transparent
+                    activeOpacity={1} // Se
+                  >
+                    <View style={styles.rightAction}>
+                      <Animated.Text
+                        style={[
+                          styles.actionText,
+                          {
+                            marginRight: 15,
+                            alignContent: "center",
+                          },
+                        ]}
+                      >
+                        <Image
+                          source={require("../assets/icon/delete.png")}
+                          style={{ borderWidth: 2 }}
+                        />
+                      </Animated.Text>
+                      <Animated.Text style={styles.actionText}>
+                        <Image source={require("../assets/icon/heart2.png")} />
+                      </Animated.Text>
+                    </View>
+                  </RectButton>
+                </>
               );
             }}
           >
@@ -99,7 +141,7 @@ const styles = StyleSheet.create({
   cartContainer: {
     flexDirection: "row",
     alignItems: "center",
-    width: "90%",
+    width: "100%",
     marginTop: 10,
     backgroundColor: "#FFFFFF",
     padding: 10,
@@ -139,5 +181,20 @@ const styles = StyleSheet.create({
   },
   cartDetailCount: {
     color: "white",
+  },
+  rightAction: {
+    flexDirection: "row",
+    flex: 1,
+  },
+  actionText: {
+    alignSelf: "center",
+    justifyContent: "center",
+    backgroundColor: "red",
+    padding: 10,
+    paddingLeft: 12,
+    paddingBottom: 13,
+    borderWidth: 2,
+    borderColor: "red",
+    borderRadius: 100,
   },
 });
