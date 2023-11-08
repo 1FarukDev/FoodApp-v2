@@ -35,69 +35,31 @@ const CartItem = () => {
       {cart.map((item) => {
         return (
           <Swipeable
-            // renderLeftActions={(progress, dragX) => {
-            //   return (
-            //     <RectButton style={{ borderWidth: 2 }}>
-            //       <Animated.Text style={styles.actionText}>
-            //         Archive
-            //       </Animated.Text>
-            //       <Animated.Text style={styles.actionText}>
-            //         Archive
-            //       </Animated.Text>
-            //     </RectButton>
-            //   );
-            // }}
             renderRightActions={(progress, dragX) => {
               return (
                 <>
-                  <RectButton
-                    underlayColor="white" // Set the underlayColor to transparent
-                    activeOpacity={1} // Se
-                  >
+                  <View>
                     <View style={styles.rightAction}>
                       <Animated.Text
-                        style={[
-                          styles.actionText,
-                          {
-                            marginRight: 15,
-                            alignContent: "center",
-                          },
-                        ]}
+                        style={[styles.actionText]}
+                        onPress={() => console.log("Hello")}
                       >
                         <Image
                           source={require("../assets/icon/delete.png")}
                           style={{ borderWidth: 2 }}
                         />
                       </Animated.Text>
-                      <Animated.Text style={styles.actionText}>
-                        <Image source={require("../assets/icon/heart2.png")} />
-                      </Animated.Text>
                     </View>
-                  </RectButton>
-                  <RectButton
-                    underlayColor="white" // Set the underlayColor to transparent
-                    activeOpacity={1} // Se
-                  >
+                  </View>
+                  <View style={{ marginLeft: 10 }}>
                     <View style={styles.rightAction}>
                       <Animated.Text
-                        style={[
-                          styles.actionText,
-                          {
-                            marginRight: 15,
-                            alignContent: "center",
-                          },
-                        ]}
+                        style={[styles.actionText, { marginRight: 10 }]}
                       >
-                        <Image
-                          source={require("../assets/icon/delete.png")}
-                          style={{ borderWidth: 2 }}
-                        />
-                      </Animated.Text>
-                      <Animated.Text style={styles.actionText}>
                         <Image source={require("../assets/icon/heart2.png")} />
                       </Animated.Text>
                     </View>
-                  </RectButton>
+                  </View>
                 </>
               );
             }}
@@ -137,6 +99,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     marginTop: 30,
+    width: "100%",
   },
   cartContainer: {
     flexDirection: "row",
@@ -196,5 +159,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "red",
     borderRadius: 100,
+    height: "auto",
   },
 });
