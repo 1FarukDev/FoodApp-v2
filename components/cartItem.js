@@ -5,9 +5,14 @@ import {
   FlatList,
   Image,
   Pressable,
+  Animated,
+  Alert,
 } from "react-native";
-import React from "react";
-import FoodItem from "./FoodItem";
+import React, { Component } from "react";
+// import { RectButton } from "react-native-gesture-handler";
+// import Swipeable from "react-native-gesture-handler/Swipeable";
+import { RectButton } from "react-native-gesture-handler";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import { useSelector, useDispatch } from "react-redux";
 import { decrementQuantity, incrementQuantity } from "../cart/cartReducer";
 
@@ -24,30 +29,58 @@ const CartItem = () => {
     dispatch(decrementQuantity(item));
   };
   console.log(cart);
+
   return (
     <View style={styles.Container}>
       {cart.map((item) => {
         return (
-          <View key={item.id} style={styles.cartContainer}>
-            <View>
-              <Image source={item.image} style={styles.cartImage} />
-            </View>
-            <View style={styles.cartInfo}>
-              <Text>{item.name}</Text>
-              <View style={styles.infoText}>
-                <Text style={styles.cartPrice}>{item.price}</Text>
-                <View style={styles.counter}>
-                  <Pressable onPress={() => decreaseQuantity(item)}>
-                    <Text style={styles.cartDetailCount}>-</Text>
-                  </Pressable>
-                  <Text style={styles.cartDetailCount}>{item.quantity}</Text>
-                  <Pressable onPress={() => inCreaseQuantity(item)}>
-                    <Text style={styles.cartDetailCount}>+</Text>
-                  </Pressable>
+          <Swipeable
+            renderLeftActions={(progress, dragX) => {
+              return (
+                <RectButton
+                  style={styles.leftAction}
+                  onPress={() => Alert.alert("Hi")}
+                >
+                  <Animated.Text style={styles.actionText}>
+                    Archive
+                  </Animated.Text>
+                </RectButton>
+              );
+            }}
+            renderRightActions={(progress, dragX) => {
+              return (
+                <RectButton
+                  style={styles.rightAction}
+                  onPress={() => Alert.alert("Hello")}
+                >
+                  <Animated.Text style={styles.actionText}>
+                    Delete
+                  </Animated.Text>
+                </RectButton>
+              );
+            }}
+          >
+            <View key={item.id} style={styles.cartContainer}>
+              <View>
+                <Image source={item.image} style={styles.cartImage} />
+              </View>
+              <View style={styles.cartInfo}>
+                <Text>{item.name}</Text>
+                <View style={styles.infoText}>
+                  <Text style={styles.cartPrice}>{item.price}</Text>
+                  <View style={styles.counter}>
+                    <Pressable onPress={() => decreaseQuantity(item)}>
+                      <Text style={styles.cartDetailCount}>-</Text>
+                    </Pressable>
+                    <Text style={styles.cartDetailCount}>{item.quantity}</Text>
+                    <Pressable onPress={() => inCreaseQuantity(item)}>
+                      <Text style={styles.cartDetailCount}>+</Text>
+                    </Pressable>
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
+          </Swipeable>
         );
       })}
     </View>
