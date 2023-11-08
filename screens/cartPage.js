@@ -20,6 +20,7 @@ const CartPage = () => {
           paddingLeft: 30,
           paddingRight: 30,
           flex: 1,
+          
         },
         styles.container,
       ]}

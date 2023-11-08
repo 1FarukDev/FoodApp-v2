@@ -16,41 +16,44 @@ import Register from "./screens/register";
 import { Provider } from "react-redux";
 import store from "./cart/store";
 import CartPage from "./screens/cartPage";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Details"
-            component={MyTabs}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="ProuctDetail"
-            component={ProductDetail}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Register"
-            component={Register}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Cart"
-            component={CartPage}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <GestureHandlerRootView style={{ height: "100%", width: "100%" }}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Details"
+              component={MyTabs}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ProuctDetail"
+              component={ProductDetail}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Cart"
+              component={CartPage}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </Provider>
   );
 }
