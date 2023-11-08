@@ -6,6 +6,7 @@ import {
   Image,
   Pressable,
   Animated,
+  ScrollView,
   Alert,
 } from "react-native";
 import React, { Component } from "react";
@@ -28,66 +29,70 @@ const CartItem = () => {
   const decreaseQuantity = (item) => {
     dispatch(decrementQuantity(item));
   };
-  console.log(cart);
-
   return (
-    <View style={styles.Container}>
-      {cart.map((item) => {
-        return (
-          <Swipeable
-            renderRightActions={(progress, dragX) => {
-              return (
-                <>
-                  <View>
-                    <View style={styles.rightAction}>
-                      <Animated.Text
-                        style={[styles.actionText]}
-                        onPress={() => console.log("Hello")}
-                      >
-                        <Image
-                          source={require("../assets/icon/delete.png")}
-                          style={{ borderWidth: 2 }}
-                        />
-                      </Animated.Text>
+    <ScrollView>
+      <View style={styles.Container}>
+        {cart.map((item) => {
+          return (
+            <Swipeable
+              renderRightActions={(progress, dragX) => {
+                return (
+                  <>
+                    <View>
+                      <View style={styles.rightAction}>
+                        <Animated.Text
+                          style={[styles.actionText]}
+                          onPress={() => console.log("Hello")}
+                        >
+                          <Image
+                            source={require("../assets/icon/delete.png")}
+                            style={{ borderWidth: 2 }}
+                          />
+                        </Animated.Text>
+                      </View>
                     </View>
-                  </View>
-                  <View style={{ marginLeft: 10 }}>
-                    <View style={styles.rightAction}>
-                      <Animated.Text
-                        style={[styles.actionText, { marginRight: 10 }]}
-                      >
-                        <Image source={require("../assets/icon/heart2.png")} />
-                      </Animated.Text>
+                    <View style={{ marginLeft: 10 }}>
+                      <View style={styles.rightAction}>
+                        <Animated.Text
+                          style={[styles.actionText, { marginRight: 10 }]}
+                        >
+                          <Image
+                            source={require("../assets/icon/heart2.png")}
+                          />
+                        </Animated.Text>
+                      </View>
                     </View>
-                  </View>
-                </>
-              );
-            }}
-          >
-            <View key={item.id} style={styles.cartContainer}>
-              <View>
-                <Image source={item.image} style={styles.cartImage} />
-              </View>
-              <View style={styles.cartInfo}>
-                <Text>{item.name}</Text>
-                <View style={styles.infoText}>
-                  <Text style={styles.cartPrice}>{item.price}</Text>
-                  <View style={styles.counter}>
-                    <Pressable onPress={() => decreaseQuantity(item)}>
-                      <Text style={styles.cartDetailCount}>-</Text>
-                    </Pressable>
-                    <Text style={styles.cartDetailCount}>{item.quantity}</Text>
-                    <Pressable onPress={() => inCreaseQuantity(item)}>
-                      <Text style={styles.cartDetailCount}>+</Text>
-                    </Pressable>
+                  </>
+                );
+              }}
+            >
+              <View key={item.id} style={styles.cartContainer}>
+                <View>
+                  <Image source={item.image} style={styles.cartImage} />
+                </View>
+                <View style={styles.cartInfo}>
+                  <Text>{item.name}</Text>
+                  <View style={styles.infoText}>
+                    <Text style={styles.cartPrice}>{item.price}</Text>
+                    <View style={styles.counter}>
+                      <Pressable onPress={() => decreaseQuantity(item)}>
+                        <Text style={styles.cartDetailCount}>-</Text>
+                      </Pressable>
+                      <Text style={styles.cartDetailCount}>
+                        {item.quantity}
+                      </Text>
+                      <Pressable onPress={() => inCreaseQuantity(item)}>
+                        <Text style={styles.cartDetailCount}>+</Text>
+                      </Pressable>
+                    </View>
                   </View>
                 </View>
               </View>
-            </View>
-          </Swipeable>
-        );
-      })}
-    </View>
+            </Swipeable>
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 };
 
