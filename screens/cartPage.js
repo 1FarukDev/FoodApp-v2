@@ -10,6 +10,9 @@ const CartPage = () => {
   const handleBack = () => {
     navigation.goBack();
   };
+  const onPress = () => {
+    navigation.navigate("Details");
+  };
   const cart = useSelector((state) => state.cart.cart);
   return (
     <View
@@ -38,8 +41,7 @@ const CartPage = () => {
           imageSource={require("../assets/icon/empty.png")}
           title="No orders yet"
           description={`Hit the orange button down ${"\n"} below to Create an order`}
-          buttonText="Start Ordering"
-          onPress={() => navigation.navigate("Details")}
+          buttonText="Start ordering"
         />
       ) : (
         <CartItem />

@@ -71,15 +71,13 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
-const EmptyState = ({
-  imageSource,
-  title,
-  description,
-  buttonText,
-  onPress,
-}) => {
+import Button from "./button";
+const EmptyState = ({ imageSource, title, description, buttonText }) => {
   const navigation = useNavigation();
+
+  const onPress = () => {
+    navigation.navigate("Details");
+  };
 
   return (
     <View style={styles.container}>
@@ -88,14 +86,11 @@ const EmptyState = ({
       </View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
-      {buttonText && onPress && (
-        <Pressable
-          style={styles.button}
-          onPress={onPress || (() => navigation.navigate("Details"))}
-        >
-          <Text style={styles.buttonText}>{buttonText}</Text>
-        </Pressable>
-      )}
+
+      <View style={styles.button}>
+        <Button buttonText={buttonText} onPress={onPress} />
+        {/* <Text>Hello</Text> */}
+      </View>
     </View>
   );
 };
@@ -108,8 +103,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   imageContainer: {
-    // flex: 0.5,
-    marginTop: 100,
+    flex: 0.8,
+    // marginTop: 100,
     justifyContent: "flex-end",
     alignContent: "flex-end",
   },
