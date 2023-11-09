@@ -10,17 +10,24 @@ import {
   Alert,
 } from "react-native";
 import React, { Component } from "react";
-// import { RectButton } from "react-native-gesture-handler";
-// import Swipeable from "react-native-gesture-handler/Swipeable";
 import { RectButton } from "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { useSelector, useDispatch } from "react-redux";
-import { decrementQuantity, incrementQuantity } from "../cart/cartReducer";
+import {
+  decrementQuantity,
+  incrementQuantity,
+  removeFromCart,
+  addToFavourite as addToFavouriteAction,
+  removeFromFavourite as removeFromFavouriteAction,
+} from "../cart/cartReducer";
 
 const CartItem = () => {
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
+  const Favourite = useSelector((state) => state.cart.favourite);
+
+  console.log({ Favourite });
   // Function to increase quantity
   const inCreaseQuantity = (item) => {
     dispatch(incrementQuantity(item));
@@ -29,12 +36,23 @@ const CartItem = () => {
   const decreaseQuantity = (item) => {
     dispatch(decrementQuantity(item));
   };
+  // Function to delete from cart
+  const deleteFromCart = (item) => {
+    dispatch(removeFromCart(item));
+  };
+
+  // Function to add to Favourite
+  const addToFavourite = (item) => {
+    dispatch(addToFavouriteAction(item));
+  };
+
   return (
     <ScrollView>
       <View style={styles.Container}>
         {cart.map((item) => {
           return (
             <Swipeable
+              key={item.id}
               renderRightActions={(progress, dragX) => {
                 return (
                   <>
@@ -42,7 +60,7 @@ const CartItem = () => {
                       <View style={styles.rightAction}>
                         <Animated.Text
                           style={[styles.actionText]}
-                          onPress={() => console.log("Hello")}
+                          onPress={() => deleteFromCart(item)}
                         >
                           <Image
                             source={require("../assets/icon/delete.png")}
@@ -55,6 +73,7 @@ const CartItem = () => {
                       <View style={styles.rightAction}>
                         <Animated.Text
                           style={[styles.actionText, { marginRight: 10 }]}
+                          onPress={() => addToFavourite(item)}
                         >
                           <Image
                             source={require("../assets/icon/heart2.png")}
@@ -114,6 +133,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     padding: 10,
     borderRadius: 20,
+    borderWidth: 2,
+    borderColor: "red",
   },
   cartImage: {
     width: 100,
