@@ -10,7 +10,7 @@ import React from "react";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../cart/cartReducer";
+import { addToCart, removeFromCart } from "../cart/cartReducer";
 // import Click from "../components/button";
 
 //  Function handling the params
@@ -28,6 +28,10 @@ const ProductDetail = ({ name }) => {
     dispatch(addToCart(item));
   };
 
+  // Function to remove from cart
+  const deleteFromCart = () => {
+    dispatch(removeFromCart(item));
+  };
   // Destructuring the route
   const route = useRoute();
   const { item } = route.params;
@@ -74,7 +78,7 @@ const ProductDetail = ({ name }) => {
 
       {/* Button */}
       {cart.some((value) => value.id == item.id) ? (
-        <Pressable style={styles.button} onPress={() => addItemToCart(item)}>
+        <Pressable style={styles.button} onPress={() => deleteFromCart(item)}>
           <Text style={styles.buttonText}>Remove From Cart</Text>
         </Pressable>
       ) : (

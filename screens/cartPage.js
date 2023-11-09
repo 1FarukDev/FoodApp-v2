@@ -11,16 +11,14 @@ const CartPage = () => {
     navigation.goBack();
   };
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
   return (
     <View
       style={[
         {
           marginTop: Platform.OS === "android" ? 30 : 0,
-          paddingLeft: 30,
-          paddingRight: 30,
+          // paddingLeft: 30,
+          // paddingRight: 30,
           flex: 1,
-          
         },
         styles.container,
       ]}
@@ -35,7 +33,17 @@ const CartPage = () => {
 
       {/* Cart Page entry */}
 
-      {cart.length === 0 ? <EmptyCart /> : <CartItem />}
+      {cart.length === 0 ? (
+        <EmptyCart
+          imageSource={require("../assets/icon/empty.png")}
+          title="No orders yet"
+          description={`Hit the orange button down ${"\n"} below to Create an order`}
+          buttonText="Start Ordering"
+          onPress={() => navigation.navigate("Details")}
+        />
+      ) : (
+        <CartItem />
+      )}
     </View>
   );
 };
@@ -49,6 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    paddingLeft: 30,
   },
   orderText: {
     fontWeight: "400",
