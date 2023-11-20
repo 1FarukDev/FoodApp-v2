@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import EmptyState from "../../components/emptyCart";
 // import EmptyCart from "../components/emptyCart";
 // import CartItem from "../components/cartItem";
+import FavouriteItem from "../../components/favouriteItem";
 import CartItem from "../../components/cartItem";
 const Favourite = () => {
   const navigation = useNavigation();
@@ -38,7 +39,7 @@ const Favourite = () => {
           description={`Click on the love button on each ${"\n"} detail page to add favourite`}
         />
       ) : (
-        <CartItem />
+        <FavouriteItem />
       )}
     </View>
   );
