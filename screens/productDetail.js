@@ -5,12 +5,17 @@ import {
   View,
   Image,
   Pressable,
+  Alert,
 } from "react-native";
 import React from "react";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../cart/cartReducer";
+import {
+  addToCart,
+  removeFromCart,
+  addToFavourite as addToFavouriteAction,
+} from "../cart/cartReducer";
 // import Click from "../components/button";
 
 //  Function handling the params
@@ -23,15 +28,24 @@ const ProductDetail = ({ name }) => {
     navigation.goBack();
   };
 
-  // Function to hadnle cart
+  // Function to handle cart
   const addItemToCart = (item) => {
     dispatch(addToCart(item));
+    Alert.alert("Item added to cart");
   };
 
   // Function to remove from cart
   const deleteFromCart = () => {
     dispatch(removeFromCart(item));
+    Alert.alert("Item removed from cart");
   };
+
+  // Function to add to Favourite
+  const addToFavourite = (item) => {
+    dispatch(addToFavouriteAction(item));
+    Alert.alert("Item added to favourite");
+  };
+
   // Destructuring the route
   const route = useRoute();
   const { item } = route.params;
@@ -53,7 +67,7 @@ const ProductDetail = ({ name }) => {
         <Pressable onPress={handleBack}>
           <Image source={require("../assets/icon/back.png")} />
         </Pressable>
-        <Pressable>
+        <Pressable onPress={() => addToFavourite(item)}>
           <Image source={require("../assets/icon/heart.png")} />
         </Pressable>
       </View>

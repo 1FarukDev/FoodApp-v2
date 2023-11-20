@@ -2,56 +2,41 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
+  ScrollView,
   Image,
   Pressable,
   Animated,
-  ScrollView,
   Alert,
 } from "react-native";
-import React, { Component } from "react";
-import { RectButton } from "react-native-gesture-handler";
-import Swipeable from "react-native-gesture-handler/Swipeable";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import {
-  decrementQuantity,
-  incrementQuantity,
-  removeFromCart,
+  addToCart,
   addToFavourite as addToFavouriteAction,
   removeFromFavourite as removeFromFavouriteAction,
 } from "../cart/cartReducer";
 
-const CartItem = () => {
-  const cart = useSelector((state) => state.cart.cart);
+const FavouriteItem = () => {
+  const Favourite = useSelector((state) => state.cart.favourite);
   const dispatch = useDispatch();
 
-  const Favourite = useSelector((state) => state.cart.favourite);
-
-  console.log({ Favourite });
-  // Function to increase quantity
-  const inCreaseQuantity = (item) => {
-    dispatch(incrementQuantity(item));
-  };
-  // Function to decrease item
-  const decreaseQuantity = (item) => {
-    dispatch(decrementQuantity(item));
-  };
-  // Function to delete from cart
-  const deleteFromCart = (item) => {
-    dispatch(removeFromCart(item));
-    Alert.alert("Item removed from cart");
-  };
-
-  // Function to add to Favourite
-  const addToFavourite = (item) => {
-    dispatch(addToFavouriteAction(item));
+  // Function to handlle cart
+  const addItemToCart = (item) => {
+    dispatch(addToCart(item));
     Alert.alert("Item added to cart");
+  };
+
+  // Function to delete from favourite
+  const removeFromFavourite = (item) => {
+    dispatch(removeFromFavouriteAction(item));
+    Alert.alert("Item removed from favourite");
   };
 
   return (
     <ScrollView>
       <View style={styles.Container}>
-        {cart.map((item) => {
+        {Favourite.map((item) => {
           return (
             <Swipeable
               key={item.id}
@@ -62,7 +47,8 @@ const CartItem = () => {
                       <View style={styles.rightAction}>
                         <Animated.Text
                           style={[styles.actionText]}
-                          onPress={() => deleteFromCart(item)}
+                          //   onPress={() => deleteFromFavourite(item)}
+                          onPress={() => removeFromFavourite(item)}
                         >
                           <Image
                             source={require("../assets/icon/delete.png")}
@@ -75,10 +61,10 @@ const CartItem = () => {
                       <View style={styles.rightAction}>
                         <Animated.Text
                           style={[styles.actionText, { marginRight: 10 }]}
-                          onPress={() => addToFavourite(item)}
+                          onPress={() => addItemToCart(item)}
                         >
                           <Image
-                            source={require("../assets/icon/heart2.png")}
+                            source={require("../assets/icon/shopping-cart.png")}
                           />
                         </Animated.Text>
                       </View>
@@ -95,17 +81,6 @@ const CartItem = () => {
                   <Text>{item.name}</Text>
                   <View style={styles.infoText}>
                     <Text style={styles.cartPrice}>{item.price}</Text>
-                    <View style={styles.counter}>
-                      <Pressable onPress={() => decreaseQuantity(item)}>
-                        <Text style={styles.cartDetailCount}>-</Text>
-                      </Pressable>
-                      <Text style={styles.cartDetailCount}>
-                        {item.quantity}
-                      </Text>
-                      <Pressable onPress={() => inCreaseQuantity(item)}>
-                        <Text style={styles.cartDetailCount}>+</Text>
-                      </Pressable>
-                    </View>
                   </View>
                 </View>
               </View>
@@ -117,7 +92,7 @@ const CartItem = () => {
   );
 };
 
-export default CartItem;
+export default FavouriteItem;
 
 const styles = StyleSheet.create({
   Container: {
@@ -158,20 +133,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     marginTop: 10,
-  },
-  counter: {
-    flexDirection: "row",
-    backgroundColor: "red",
-    borderRadius: 40,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    alignContent: "center",
-    alignItems: "center",
-    flex: 1,
-    justifyContent: "space-between",
-  },
-  cartDetailCount: {
-    color: "white",
   },
   rightAction: {
     flexDirection: "row",
