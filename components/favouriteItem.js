@@ -6,6 +6,7 @@ import {
   Image,
   Pressable,
   Animated,
+  Alert,
 } from "react-native";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,16 +24,13 @@ const FavouriteItem = () => {
   // Function to handlle cart
   const addItemToCart = (item) => {
     dispatch(addToCart(item));
-  };
-
-  // Function to add to Favourite
-  const addToFavourite = (item) => {
-    dispatch(addToFavouriteAction(item));
+    Alert.alert("Item added to cart");
   };
 
   // Function to delete from favourite
   const removeFromFavourite = (item) => {
     dispatch(removeFromFavouriteAction(item));
+    Alert.alert("Item removed from favourite");
   };
 
   return (

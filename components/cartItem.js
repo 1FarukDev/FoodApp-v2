@@ -39,11 +39,13 @@ const CartItem = () => {
   // Function to delete from cart
   const deleteFromCart = (item) => {
     dispatch(removeFromCart(item));
+    Alert.alert("Item removed from cart");
   };
 
   // Function to add to Favourite
   const addToFavourite = (item) => {
     dispatch(addToFavouriteAction(item));
+    Alert.alert("Item added to cart");
   };
 
   return (
