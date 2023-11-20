@@ -11,9 +11,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import {
-  decrementQuantity,
-  incrementQuantity,
-  removeFromCart,
+  addToCart,
   addToFavourite as addToFavouriteAction,
   removeFromFavourite as removeFromFavouriteAction,
 } from "../cart/cartReducer";
@@ -22,10 +20,9 @@ const FavouriteItem = () => {
   const Favourite = useSelector((state) => state.cart.favourite);
   const dispatch = useDispatch();
 
-  console.log({ Favourite });
-  // Function to delete from cart
-  const deleteFromCart = (item) => {
-    dispatch(removeFromCart(item));
+  // Function to handlle cart
+  const addItemToCart = (item) => {
+    dispatch(addToCart(item));
   };
 
   // Function to add to Favourite
@@ -66,10 +63,10 @@ const FavouriteItem = () => {
                       <View style={styles.rightAction}>
                         <Animated.Text
                           style={[styles.actionText, { marginRight: 10 }]}
-                          onPress={() => addToFavourite(item)}
+                          onPress={() => addItemToCart(item)}
                         >
                           <Image
-                            source={require("../assets/icon/heart2.png")}
+                            source={require("../assets/icon/shopping-cart.png")}
                           />
                         </Animated.Text>
                       </View>

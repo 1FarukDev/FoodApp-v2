@@ -23,7 +23,7 @@ const ProductDetail = ({ name }) => {
     navigation.goBack();
   };
 
-  // Function to hadnle cart
+  // Function to handle cart
   const addItemToCart = (item) => {
     dispatch(addToCart(item));
   };
