@@ -8,12 +8,36 @@ import {
   Animated,
 } from "react-native";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import {
+  decrementQuantity,
+  incrementQuantity,
+  removeFromCart,
+  addToFavourite as addToFavouriteAction,
+  removeFromFavourite as removeFromFavouriteAction,
+} from "../cart/cartReducer";
 
 const FavouriteItem = () => {
   const Favourite = useSelector((state) => state.cart.favourite);
+  const dispatch = useDispatch();
+
   console.log({ Favourite });
+  // Function to delete from cart
+  const deleteFromCart = (item) => {
+    dispatch(removeFromCart(item));
+  };
+
+  // Function to add to Favourite
+  const addToFavourite = (item) => {
+    dispatch(addToFavouriteAction(item));
+  };
+
+  // Function to delete from favourite
+  const removeFromFavourite = (item) => {
+    dispatch(removeFromFavouriteAction(item));
+  };
+
   return (
     <ScrollView>
       <View style={styles.Container}>
@@ -29,6 +53,7 @@ const FavouriteItem = () => {
                         <Animated.Text
                           style={[styles.actionText]}
                           //   onPress={() => deleteFromFavourite(item)}
+                          onPress={() => removeFromFavourite(item)}
                         >
                           <Image
                             source={require("../assets/icon/delete.png")}
@@ -61,17 +86,6 @@ const FavouriteItem = () => {
                   <Text>{item.name}</Text>
                   <View style={styles.infoText}>
                     <Text style={styles.cartPrice}>{item.price}</Text>
-                    <View style={styles.counter}>
-                      <Pressable onPress={() => decreaseQuantity(item)}>
-                        <Text style={styles.cartDetailCount}>-</Text>
-                      </Pressable>
-                      <Text style={styles.cartDetailCount}>
-                        {item.quantity}
-                      </Text>
-                      <Pressable onPress={() => inCreaseQuantity(item)}>
-                        <Text style={styles.cartDetailCount}>+</Text>
-                      </Pressable>
-                    </View>
                   </View>
                 </View>
               </View>
@@ -124,20 +138,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     marginTop: 10,
-  },
-  counter: {
-    flexDirection: "row",
-    backgroundColor: "red",
-    borderRadius: 40,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    alignContent: "center",
-    alignItems: "center",
-    flex: 1,
-    justifyContent: "space-between",
-  },
-  cartDetailCount: {
-    color: "white",
   },
   rightAction: {
     flexDirection: "row",
