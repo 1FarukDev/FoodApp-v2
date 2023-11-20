@@ -5,13 +5,13 @@ import { useNavigation } from "@react-navigation/native";
 import EmptyState from "../../components/emptyCart";
 // import EmptyCart from "../components/emptyCart";
 // import CartItem from "../components/cartItem";
-
+import CartItem from "../../components/cartItem";
 const Favourite = () => {
   const navigation = useNavigation();
   const handleBack = () => {
     navigation.goBack();
   };
-  const cart = useSelector((state) => state.cart.cart);
+  const favourite = useSelector((state) => state.cart.favourite);
   return (
     <View
       style={[
@@ -31,7 +31,7 @@ const Favourite = () => {
 
       {/* Cart Page entry */}
 
-      {cart.length === 0 ? (
+      {favourite.length === 0 ? (
         <EmptyState
           // imageSource={require("../assets/icon/empty.png")}
           title="No favourite yet"
