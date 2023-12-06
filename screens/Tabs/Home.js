@@ -14,7 +14,7 @@ import Foods from "../../components/foods";
 import Drinks from "../../components/drinks";
 import Sauce from "../../components/sauce";
 import Snacks from "../../components/snacks";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, DrawerActions } from "@react-navigation/native";
 const Home = () => {
   const [activeComponent, setActiveComponent] = useState(1);
   const navigation = useNavigation();
@@ -55,7 +55,7 @@ const Home = () => {
     >
       {/* Icon */}
       <View style={styles.icon}>
-        <TouchableWithoutFeedback onPress={handlePress}>
+        <TouchableWithoutFeedback onPress={() => navigation.toggleDrawer()}>
           <Image source={require("../../assets/icon/hamburger.png")} />
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={handleCartPage}>
