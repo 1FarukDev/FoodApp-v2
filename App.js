@@ -18,6 +18,8 @@ import CartPage from "./screens/cartPage";
 import { Provider } from "react-redux";
 import store from "./cart/store";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import DrawerScreenWrapper from "./components/DrawerScreenWraper";
+
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -85,62 +87,64 @@ function AppStack() {
 
 function MyTabs() {
   return (
-    <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: "#FA4A0C", // Set the active tab icon color here
-        tabBarLabel: "",
-        headerTitle: "Home Screen",
-      }}
-    >
-      <Tab.Screen
-        name="home"
-        component={Home}
-        options={{
+    <DrawerScreenWrapper>
+      <Tab.Navigator
+        tabBarOptions={{
+          activeTintColor: "#FA4A0C", // Set the active tab icon color here
           tabBarLabel: "",
-          headerShown: false,
-          headerTitle: "Home Sreen",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="home" size={size} color={color} />
-          ),
+          headerTitle: "Home Screen",
         }}
-      />
-      <Tab.Screen
-        name="Favorite"
-        component={Favorite}
-        options={{
-          tabBarLabel: "",
-          headerShown: false,
-          headerTitle: "Settings",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="heart" size={size} color={color} />
-          ),
-        }}
-      />
+      >
+        <Tab.Screen
+          name="home"
+          component={Home}
+          options={{
+            tabBarLabel: "",
+            headerShown: false,
+            headerTitle: "Home Sreen",
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="home" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Favorite"
+          component={Favorite}
+          options={{
+            tabBarLabel: "",
+            headerShown: false,
+            headerTitle: "Settings",
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="heart" size={size} color={color} />
+            ),
+          }}
+        />
 
-      <Tab.Screen
-        name="Order"
-        component={Order}
-        options={{
-          tabBarLabel: "",
-          headerShown: false,
-          headerTitle: "Settings",
-          tabBarIcon: ({ color, size }) => (
-            <Icons name="ios-timer-outline" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarLabel: "",
-          headerShown: false,
-          headerTitle: "Profile",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="user" size={size} color={color} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+        <Tab.Screen
+          name="Order"
+          component={Order}
+          options={{
+            tabBarLabel: "",
+            headerShown: false,
+            headerTitle: "Settings",
+            tabBarIcon: ({ color, size }) => (
+              <Icons name="ios-timer-outline" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarLabel: "",
+            headerShown: false,
+            headerTitle: "Profile",
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="user" size={size} color={color} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </DrawerScreenWrapper>
   );
 }
