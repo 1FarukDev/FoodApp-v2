@@ -18,7 +18,6 @@ import CartPage from "./screens/cartPage";
 import { Provider } from "react-redux";
 import store from "./cart/store";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
