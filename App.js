@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/Ionicons";
 import ProductDetail from "./screens/productDetail";
@@ -13,50 +14,76 @@ import HomeScreen from "./screens/home";
 import Profile from "./screens/Tabs/profile";
 import Order from "./screens/Tabs/order";
 import Register from "./screens/register";
+import CartPage from "./screens/cartPage";
 import { Provider } from "react-redux";
 import store from "./cart/store";
-import CartPage from "./screens/cartPage";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-const Tab = createBottomTabNavigator();
 
+const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
+
 export default function App() {
   return (
     <Provider store={store}>
       <GestureHandlerRootView style={{ height: "100%", width: "100%" }}>
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Details"
-              component={MyTabs}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ProuctDetail"
-              component={ProductDetail}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Register"
-              component={Register}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Cart"
-              component={CartPage}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
+          <Drawer.Navigator
+            screenOptions={{
+              headerShown: false,
+              drawerType: "slide",
+              overlayColor: "transparent",
+              drawerHideStatusBarOnOpen: true,
+              drawerStyle: {
+                backgroundColor: "#009688",
+                width: "50%",
+              },
+              sceneContainerStyle: {
+                backgroundColor: "#009688",
+              },
+            }}
+          >
+            <Drawer.Screen name="Home" component={AppStack} />
+            {/* Add more screens for the drawer as needed */}
+          </Drawer.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>
     </Provider>
   );
 }
+
+function AppStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={MyTabs}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ProductDetail"
+        component={ProductDetail}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Cart"
+        component={CartPage}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function MyTabs() {
   return (
     <Tab.Navigator
@@ -118,12 +145,3 @@ function MyTabs() {
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
