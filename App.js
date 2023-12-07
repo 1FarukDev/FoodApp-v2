@@ -18,6 +18,8 @@ import CartPage from "./screens/cartPage";
 import { Provider } from "react-redux";
 import store from "./cart/store";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import DrawerScreenWrapper from "./components/DrawerScreenWraper";
+
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -34,15 +36,16 @@ export default function App() {
               overlayColor: "transparent",
               drawerHideStatusBarOnOpen: true,
               drawerStyle: {
-                backgroundColor: "#009688",
+                backgroundColor: "red",
+                paddingTop: 20,
                 width: "50%",
               },
               sceneContainerStyle: {
-                backgroundColor: "#009688",
+                backgroundColor: "red",
               },
             }}
           >
-            <Drawer.Screen name="Home" component={AppStack} />
+            <Drawer.Screen name="HomePage" component={AppStack} />
             {/* Add more screens for the drawer as needed */}
           </Drawer.Navigator>
         </NavigationContainer>
@@ -53,42 +56,56 @@ export default function App() {
 
 function AppStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Details"
-        component={MyTabs}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="ProductDetail"
-        component={ProductDetail}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Cart"
-        component={CartPage}
-        options={{ headerShown: false }}
-      />
-    </Stack.Navigator>
+    <DrawerScreenWrapper>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Details"
+          component={MyTabs}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ProductDetail"
+          component={ProductDetail}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Cart"
+          component={CartPage}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
+    </DrawerScreenWrapper>
   );
 }
 
 function MyTabs() {
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: "#FA4A0C", // Set the active tab icon color here
-        tabBarLabel: "",
+      screenOptions={{
+        tabBarActiveTintColor: "#FA4A0C",
+        tabBarLabelStyle: {
+          display: "none",
+        },
         headerTitle: "Home Screen",
       }}
     >
