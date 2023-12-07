@@ -5,7 +5,7 @@ const FoodItem = ({ item }) => {
   const navigation = useNavigation();
   const handlePress = () => {
     // console.log("pressed");
-    navigation.navigate("ProuctDetail", {item});
+    navigation.navigate("ProductDetail", { item });
   };
   return (
     <Pressable style={styles.foodList} onPress={() => handlePress(item)}>

@@ -15,6 +15,7 @@ import Drinks from "../../components/drinks";
 import Sauce from "../../components/sauce";
 import Snacks from "../../components/snacks";
 import { useNavigation, DrawerActions } from "@react-navigation/native";
+import DrawerScreenWrapper from "../../components/DrawerScreenWraper";
 const Home = () => {
   const [activeComponent, setActiveComponent] = useState(1);
   const navigation = useNavigation();
@@ -22,26 +23,10 @@ const Home = () => {
     setActiveComponent(componentNumber);
   };
 
-  const handlePress = () => {
-    console.log("Hello World");
-  };
-
   const handleCartPage = () => {
     navigation.navigate("Cart");
-    console.log("Hello World");
   };
-  // const [products, setProducts] = useState("");
 
-  // useEffect(() => {
-  //   async function fetchProducts() {
-  //     const { data, error } = await supabase.from("items").select();
-  //     if (data) {
-  //       setProducts(data);
-  //     }
-  //   }
-  //   fetchProducts();
-  // }, []);
-  // console.log({ products });
   return (
     <SafeAreaView
       style={[
@@ -107,8 +92,6 @@ const Home = () => {
           </TouchableWithoutFeedback>
         </View>
       </View>
-
-      {/* Wants to render the category components */}
       <View style={styles.activeComponent}>
         {activeComponent === 1 && <Foods />}
         {activeComponent === 2 && <Drinks />}
@@ -124,6 +107,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F2F2F2",
+    flex: 1,
   },
   icon: {
     // backgroundColor: "black",

@@ -36,15 +36,16 @@ export default function App() {
               overlayColor: "transparent",
               drawerHideStatusBarOnOpen: true,
               drawerStyle: {
-                backgroundColor: "#009688",
+                backgroundColor: "red",
+                paddingTop: 20,
                 width: "50%",
               },
               sceneContainerStyle: {
-                backgroundColor: "#009688",
+                backgroundColor: "red",
               },
             }}
           >
-            <Drawer.Screen name="Home" component={AppStack} />
+            <Drawer.Screen name="HomePage" component={AppStack} />
             {/* Add more screens for the drawer as needed */}
           </Drawer.Navigator>
         </NavigationContainer>
@@ -55,96 +56,108 @@ export default function App() {
 
 function AppStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Details"
-        component={MyTabs}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="ProductDetail"
-        component={ProductDetail}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Cart"
-        component={CartPage}
-        options={{ headerShown: false }}
-      />
-    </Stack.Navigator>
+    <DrawerScreenWrapper>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Details"
+          component={MyTabs}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ProductDetail"
+          component={ProductDetail}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Cart"
+          component={CartPage}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
+    </DrawerScreenWrapper>
   );
 }
 
 function MyTabs() {
   return (
-    <DrawerScreenWrapper>
-      <Tab.Navigator
-        tabBarOptions={{
-          activeTintColor: "#FA4A0C", // Set the active tab icon color here
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: "#FA4A0C",
+        tabBarLabelStyle: {
+          display: "none",
+        },
+        headerTitle: "Home Screen",
+      }}
+    >
+      <Tab.Screen
+        name="home"
+        component={Home}
+        options={{
           tabBarLabel: "",
-          headerTitle: "Home Screen",
+          headerShown: false,
+          headerTitle: "Home Sreen",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" size={size} color={color} />
+          ),
         }}
-      >
-        <Tab.Screen
-          name="home"
-          component={Home}
-          options={{
-            tabBarLabel: "",
-            headerShown: false,
-            headerTitle: "Home Sreen",
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="home" size={size} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Favorite"
-          component={Favorite}
-          options={{
-            tabBarLabel: "",
-            headerShown: false,
-            headerTitle: "Settings",
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="heart" size={size} color={color} />
-            ),
-          }}
-        />
+      />
+      <Tab.Screen
+        name="Favorite"
+        component={Favorite}
+        options={{
+          tabBarLabel: "",
+          headerShown: false,
+          headerTitle: "Settings",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="heart" size={size} color={color} />
+          ),
+        }}
+      />
 
-        <Tab.Screen
-          name="Order"
-          component={Order}
-          options={{
-            tabBarLabel: "",
-            headerShown: false,
-            headerTitle: "Settings",
-            tabBarIcon: ({ color, size }) => (
-              <Icons name="ios-timer-outline" size={size} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            tabBarLabel: "",
-            headerShown: false,
-            headerTitle: "Profile",
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="user" size={size} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </DrawerScreenWrapper>
+      <Tab.Screen
+        name="Order"
+        component={Order}
+        options={{
+          tabBarLabel: "",
+          headerShown: false,
+          headerTitle: "Settings",
+          tabBarIcon: ({ color, size }) => (
+            <Icons name="ios-timer-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: "",
+          headerShown: false,
+          headerTitle: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="user" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
