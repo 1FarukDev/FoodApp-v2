@@ -10,6 +10,8 @@ const DrawerScreenWrapper = ({ children }) => {
   const progress = useDrawerProgress();
 
   const animatedStyles = useAnimatedStyle(() => {
+    const borderRadius = interpolate(progress.value, [0, 1], [0, 20], "clamp");
+
     return {
       transform: [
         { perspective: 2000 },
@@ -26,7 +28,7 @@ const DrawerScreenWrapper = ({ children }) => {
           translateX: interpolate(progress.value, [0, 1], [0, 0, -60], "clamp"),
         },
       ],
-      borderRadius: 20,
+      borderRadius: borderRadius,
       overflow: "hidden",
     };
   });
