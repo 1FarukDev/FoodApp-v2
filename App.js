@@ -40,22 +40,25 @@ const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
-
 export default function App() {
   return (
     <Provider store={store}>
       <GestureHandlerRootView style={{ height: "100%", width: "100%" }}>
         <NavigationContainer>
           <Drawer.Navigator
-          drawerContent= {props => <CustomDrawer {...props} /> }
+            initialRouteName="AppStack"
+            drawerContent={(props) => <CustomDrawer {...props} />}
             screenOptions={{
               headerShown: false,
+              drawerActiveTintColor: "white", //Text Color
+              drawerInactiveTintColor: "white",
               drawerType: "slide",
               overlayColor: "transparent",
               drawerHideStatusBarOnOpen: true,
               drawerStyle: {
                 backgroundColor: "#FA4A0C",
-                paddingTop: 20,
+                paddingTop: 100,
+                paddingLeft: 20,
                 width: "65%",
               },
               sceneContainerStyle: {
@@ -64,7 +67,7 @@ export default function App() {
             }}
           >
             <Drawer.Screen
-              name="HomePage"
+              name="Home"
               component={AppStack}
               options={{
                 drawerIcon: ({ focused, color, size }) => (
@@ -80,7 +83,7 @@ export default function App() {
                   <MaterialCommunityIcons
                     name="cart-arrow-down"
                     size={24}
-                    color="black"
+                    color={color}
                   />
                 ),
               }}
@@ -90,7 +93,7 @@ export default function App() {
               component={Offer}
               options={{
                 drawerIcon: ({ focused, color, size }) => (
-                  <AntDesign name="tago" size={24} color="black" />
+                  <AntDesign name="tago" size={24} color={color} />
                 ),
               }}
             />
@@ -99,7 +102,7 @@ export default function App() {
               component={Privay}
               options={{
                 drawerIcon: ({ focused, color, size }) => (
-                  <Foundation name="clipboard-notes" size={24} color="black" />
+                  <Foundation name="clipboard-notes" size={24} color={color} />
                 ),
               }}
             />
@@ -108,7 +111,7 @@ export default function App() {
               component={Security}
               options={{
                 drawerIcon: ({ focused, color, size }) => (
-                  <FontAwesome name="shield" size={24} color="black" />
+                  <FontAwesome name="shield" size={24} color={color} />
                 ),
                 order: 2,
               }}
@@ -125,7 +128,7 @@ function AppStack() {
     <DrawerScreenWrapper>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name="Home Screen"
           component={HomeScreen}
           options={{
             headerShown: false,
