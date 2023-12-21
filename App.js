@@ -34,6 +34,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
+import CustomDrawer from "./components/CustomDrawer";
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -46,6 +47,7 @@ export default function App() {
       <GestureHandlerRootView style={{ height: "100%", width: "100%" }}>
         <NavigationContainer>
           <Drawer.Navigator
+          drawerContent= {props => <CustomDrawer {...props} /> }
             screenOptions={{
               headerShown: false,
               drawerType: "slide",
