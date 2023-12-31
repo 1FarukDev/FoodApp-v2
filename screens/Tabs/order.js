@@ -1,34 +1,68 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import { RadioButton } from "react-native-paper";
-const Order = () => {
-  const [selectedValue, setSelectedValue] = useState("option1");
+import { StyleSheet, Text, View, Pressable, Image } from "react-native";
+import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import EmptyCart from "../../components/emptyCart";
+import CartItem from "../../components/cartItem";
 
+const CartPage = () => {
+  const navigation = useNavigation();
+  const handleBack = () => {
+    navigation.goBack();
+  };
+  const onPress = () => {
+    navigation.navigate("Details");
+  };
+  const cart = useSelector((state) => state.cart.cart);
   return (
-    <View>
-      <Text>Select an option:</Text>
-      <RadioButton.Group
-        onValueChange={(value) => setSelectedValue(value)}
-        value={selectedValue}
-      >
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <RadioButton.Android value="option1" />
-          <Text>Option 1</Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <RadioButton.Android value="option2" />
-          <Text>Option 2</Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <RadioButton.Android value="option3" />
-          <Text>Option 3</Text>
-        </View>
-      </RadioButton.Group>
-      <Text>Selected value: {selectedValue}</Text>
+    <View
+      style={[
+        {
+          marginTop: Platform.OS === "android" ? 30 : 0,
+          backgroundColor:'white',
+          flex: 1,
+          
+        },
+        styles.container,
+      ]}
+    >
+      {/*  Icons and Word */}
+      <View style={styles.icon}>
+        <Pressable onPress={handleBack}>
+          <Image source={require("../../assets/icon/back.png")} />
+        </Pressable>
+        <Text style={styles.orderText}>Orders</Text>
+      </View>
+
+      {/* Cart Page entry */}
+
+      {cart.length === 0 ? (
+        <EmptyCart
+          imageSource={require("../../assets/icon/empty.png")}
+          title="No orders yet"
+          description={`Hit the orange button down ${"\n"} below to Create an order`}
+          buttonText="Start ordering"
+        />
+      ) : (
+        <CartItem />
+      )}
     </View>
   );
 };
 
-export default Order;
+export default CartPage;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  icon: {
+    width: "50%",
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingLeft: 30,
+  },
+  orderText: {
+    fontWeight: "400",
+    fontSize: 20,
+  },
+});
